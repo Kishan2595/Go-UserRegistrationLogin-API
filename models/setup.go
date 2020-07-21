@@ -4,9 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	_ "github.com/lib/pq" // Registration of drivers to connect our server to the database
-	// '_' is used to inform Go that we still want this included even though
-	// we will never directly reference the package in our code.
+	_ "github.com/lib/pq"
 )
 
 var DB *sql.DB // Used to access the database from other directories as well
@@ -27,10 +25,8 @@ func ConnectDatabase() {
 	if err != nil {
 		panic(err)
 	}
-	// defer db.Close()
 
-	err = db.Ping() // sql.Open only validates the arguments provided
-	// Ping forces the code to actually open up a connection to the database.
+	err = db.Ping()
 	if err != nil {
 		panic(err)
 	}
