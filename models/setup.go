@@ -26,10 +26,11 @@ func Connectdb() {
 		panic(err)
 	}
 	// defer db.Close()
-	err = db.Ping()
-	if err != nil {
-		panic(err)
-	}
+
+	// err = db.Ping()
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	DB = db
 
