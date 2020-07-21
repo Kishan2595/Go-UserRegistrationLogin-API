@@ -12,10 +12,10 @@ type CreateUserInput struct {
 	Password string `json:"password" binding:"required"`
 }
 
-/*type LoginUserInput struct {
+type LoginUserInput struct {
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
-}*/
+}
 
 func CreateUser(c *gin.Context) {
 	var input CreateUserInput
@@ -33,4 +33,21 @@ func CreateUser(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": input})
+}
+
+func LoginUser(c *gin.Context) {
+	var input LoginUserInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	sqlStatement := `Select * From Users where Username = ($1) and Password = ($2)`
+	row := models.DB.QueryRow(sqlStatement, input.Username, input.Password)
+	err := row.Scan(&input.Username, &input.Password)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": input})
+
 }
