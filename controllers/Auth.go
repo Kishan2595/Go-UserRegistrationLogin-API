@@ -1,10 +1,11 @@
 package controllers
 
-import(
+import (
 	"fmt"
 	"net/http"
+
+	"github.com/Kishan2595/Go-UserRegistrationLogin-API/models"
 	"github.com/gin-gonic/gin"
-	
 )
 
 type CreateUserInput struct {
@@ -17,11 +18,10 @@ type LoginUserInput struct {
 	Password string `json:"password" binding:"required"`
 }
 
-func CreateUser(c *gin.context) {
+func CreateUser(c *gin.Context) {
 	var input CreateUserInput
-	if err := c.shouldBindJSON(&input);
-	if err != nil {
-		c.json(http.StatusBadRequest, gin.H{"error": err.Error()})
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
@@ -31,9 +31,9 @@ func CreateUser(c *gin.context) {
 	row := models.DB.QueryRow(sqlStatement, input.Username, input.Password)
 	err1 := row.Scan(&id)
 	if err1 != nil {
-		c.json(http.StatusBadRequest, gin.H{"error": err1.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error": err1.Error()})
 		return
 	}
 	fmt.Println("New ID is:", id)
-	c.json(http.StatusOK, gin.H{"data": input})
+	c.JSON(http.StatusOK, gin.H{"data": input})
 }
