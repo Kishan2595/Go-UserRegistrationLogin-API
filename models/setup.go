@@ -32,7 +32,7 @@ func Connectdb() {
 	// panic(err)
 	// }
 
-	//DB = db
+	DB = db
 
 	fmt.Println("Successfully connected!")
 }
