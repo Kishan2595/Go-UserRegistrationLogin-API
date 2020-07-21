@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	_ "github.com/lib/pq"
+	_ "github.com/lib/pq" // kishan
 )
 
 var DB *sql.DB
@@ -25,12 +25,11 @@ func Connectdb() {
 	if err != nil {
 		panic(err)
 	}
-	defer db.Close()
-	// fmt.Println("Hi")
-	// err = db.Ping()
-	// if err != nil {
-	// panic(err)
-	// }
+	// defer db.Close()
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
 
 	DB = db
 
