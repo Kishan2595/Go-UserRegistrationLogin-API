@@ -6,13 +6,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Connectdb() {
+func main() {
 	r := gin.Default()
 
 	models.Connectdb()
 
-	r.POST("r/egister", controllers.CreateUser)
-	r.POST("r/login", controllers.CreateUser)
+	r.POST("/register", controllers.CreateUser)
+	r.POST("/login", controllers.CreateUser)
 
 	r.Run()
 }
