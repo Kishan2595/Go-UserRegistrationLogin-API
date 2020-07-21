@@ -12,7 +12,7 @@ func main() {
 	models.Connectdb()
 
 	r.POST("/register", controllers.CreateUser)
-	r.POST("/login", controllers.CreateUser)
+	r.POST("/login", controllers.LoginUser)
 
 	r.Run()
 }
