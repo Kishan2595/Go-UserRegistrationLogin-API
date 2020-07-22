@@ -8,13 +8,13 @@ import (
 )
 
 type CreateUserInput struct {
-	Username string `json:"username" binding:"required"`
-	Password string `json:"password" binding:"required"`
+	Username string `form:"username" binding:"required"`
+	Password string `form:"password" binding:"required"`
 }
 
 type LoginUserInput struct {
-	Username string `json:"username" binding:"required"`
-	Password string `json:"password" binding:"required"`
+	Username string `form:"username" binding:"required"`
+	Password string `form:"password" binding:"required"`
 }
 
 func CreateUser(c *gin.Context) {
@@ -50,4 +50,12 @@ func LoginUser(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"data": input})
 
+}
+
+func RegisterForm(c *gin.Context) {
+	c.HTML(http.StatusOK, "register.html", gin.H{})
+}
+
+func LoginForm(c *gin.Context) {
+	c.HTML(http.StatusOK, "login.html", gin.H{})
 }
