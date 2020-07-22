@@ -8,7 +8,7 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("html/")
+	r.LoadHTMLGlob("html/*")
 
 	models.ConnectDatabase()
 
