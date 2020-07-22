@@ -8,11 +8,13 @@ import (
 
 func main() {
 	r := gin.Default()
+	r.LoadHTMLGlob("html/")
 
 	models.ConnectDatabase()
 
 	r.POST("/register", controllers.CreateUser)
 	r.POST("/login", controllers.LoginUser)
-
+	r.GET("/register", controllers.RegisterForm)
+	r.GET("/login", controllers.LoginForm)
 	r.Run()
 }
