@@ -16,9 +16,6 @@ func main() {
 	r.POST("/login", controllers.LoginUser)
 	r.GET("/register", controllers.RegisterForm)
 	r.GET("/login", controllers.LoginForm)
-<<<<<<< HEAD
 
-=======
->>>>>>> 251254e29ab0178dbaefed621766952bf870d0ca
 	r.Run()
 }
